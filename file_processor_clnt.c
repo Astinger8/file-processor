@@ -21,7 +21,6 @@ int main(int argc, char *argv[]) {
     mkfifo(FIFO_C2S, 0666);
     mkfifo(FIFO_S2C, 0666);
 
-    // FIFO 열기
     int fd_out = open(FIFO_C2S, O_WRONLY);
     int fd_in  = open(FIFO_S2C, O_RDONLY);
     if (fd_out == -1 || fd_in == -1) {
@@ -50,7 +49,6 @@ int main(int argc, char *argv[]) {
     while (fgets(line, sizeof(line), fp)) {
         count++;
         printf("%d번째 줄 전송...\n", count);
-        //fflush(stdout);
 
         size_t len = strlen(line);
         if (len == 0 || line[len - 1] != '\n') {
@@ -67,7 +65,6 @@ int main(int argc, char *argv[]) {
             } else {
                 printf("%d번째 줄 결과 수신: %s\n", count, resp);
             }
-            //fflush(stdout);
         }
     }
 
